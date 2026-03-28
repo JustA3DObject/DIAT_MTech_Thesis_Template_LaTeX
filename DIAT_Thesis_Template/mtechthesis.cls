@@ -23,7 +23,7 @@
 % Page setup
 \onehalfspacing % D.2.2.1: Line spacing 1.5
 \setlength{\parindent}{12mm} % D.2.5.1.b: Indent 12mm
-\setlength{\parskip}{0pt} % D.2.5.1.b: Use indent, not parskip
+\setlength{\parskip}{2.5\baselineskip} % D.2.5.1.a: Use 2.5 line spacing
 
 % D.2.5.1.d: Justification settings
 \setlength{\emergencystretch}{3em}
@@ -37,16 +37,24 @@
 \renewcommand{\footrulewidth}{0.0pt} % No footer rule
 
 % Chapter and Section Formatting
+
+% Dynamic titlespacing commands to handle preliminary vs main chapters
+\newcommand{\prelimtitlespacing}{
+    % D.3.1: Preliminary Headings 25mm from top edge (30mm margin - 5mm = 25mm)
+    \titlespacing*{\chapter}{0pt}{-5mm}{25mm}
+}
+\newcommand{\mainmattertitlespacing}{
+    % D.2.5.2.a: Chapter headings 75mm from paper edge (75mm - 30mm margin = 45mm)
+    \titlespacing*{\chapter}{0pt}{45mm}{25mm}
+}
+
 % D.2.5.2: Chapter Format
 \titleformat{\chapter}[display]
 {\normalfont\fontsize{18}{22}\bfseries\centering} % D.2.5.2.b: 18pt, bold, center, U/L case
 {\chaptertitlename\ \thechapter}
 {10pt}
 {\fontsize{18}{22}\selectfont}
-\titlespacing*{\chapter}
-{0pt} % left
-{45mm} % D.2.5.2.a: 75mm from paper edge (75mm - 30mm margin = 45mm)
-{25mm} % D.2.5.2.c: 25mm gap below
+\prelimtitlespacing
 
 % D.2.5.3.d: Section Format
 \titleformat{\section}
@@ -92,11 +100,31 @@
 
 \begin{document}
 
+% Start Roman numbering from Title Page (page i, unprinted) - D.2.3.3
+\pagenumbering{roman}
+\setcounter{page}{1}
+
 % Title Page
 \maketitle
+\thispagestyle{empty} 
 
 % Certificate Page
 \makecertificate
+
+% Certificate of Course Work
+\cleardoublepage
+\chapter*{Certificate of Course Work}
+\addcontentsline{toc}{chapter}{Certificate of Course Work}
+
+This is to certify that \textbf{\authorname} (\rollnumber) has satisfactorily completed the course work requirements for the M.Tech degree program in \textbf{Your Specialization}.
+
+\vspace{2cm}
+
+\noindent\begin{tabular}{@{}p{0.5\textwidth}p{0.5\textwidth}@{}}
+Date: \rule{3cm}{0.4pt} & \hfill\textbf{Head of the Department}\hspace{0pt}\\[0.2cm]
+Place: \rule{3cm}{0.4pt} & \hfill\departmentname\hspace{0pt}\\[0.2cm]
+& \hfill\institutename\hspace{0pt}
+\end{tabular}
 
 % Declaration Page
 \makedeclaration
@@ -109,9 +137,6 @@ I am also grateful to the faculty members of \@departmentname\ for their support
 
 I would like to thank my family and friends for their constant support and encouragement.
 \end{acknowledgements}
-
-% Start Roman numbering for preliminary pages
-\frontmatter % D.2.3.3: Lower case Roman
 
 % Abstract
 \begin{abstract}
@@ -157,10 +182,11 @@ FEA & Finite Element Analysis\\
 \cleardoublepage
 
 % Main Content Starts - Arabic numbering
-\mainmatter % D.2.3.1: Arabic numerals
+\pagenumbering{arabic} % D.2.3.1: Arabic numerals
+\mainmattertitlespacing % Switch to chapter 75mm top spacing
 
 % Chapter 1: Introduction
-\chapter{INTRODUCTION}
+\chapter{Introduction}
 \label{ch:introduction}
 \thispagestyle{empty} % D.2.3.1: Page 1 number not printed
 
@@ -185,7 +211,7 @@ This thesis is organized as follows:
 \end{itemize}
 
 % Chapter 2: Review of Literature
-\chapter{REVIEW OF LITERATURE}
+\chapter{Review of Literature}
 \label{ch:literature}
 
 \section{Introduction}
@@ -207,7 +233,7 @@ Discuss another subtopic with relevant citations \cite{reference2}.
 Summarize the key findings from the literature review.
 
 % Chapter 3: Knowledge Gaps
-\chapter{KNOWLEDGE GAPS IN EARLIER INVESTIGATIONS}
+\chapter{Knowledge Gaps in Earlier Investigations}
 \label{ch:gaps}
 
 \section{Identified Gaps}
@@ -223,7 +249,7 @@ Based on the literature review, identify and discuss the gaps in existing resear
 Explain how your research addresses these gaps and why it is needed.
 
 % Chapter 4: Scope and Objectives
-\chapter{SCOPE AND OBJECTIVES OF PRESENT RESEARCH}
+\chapter{Scope and Objectives of Present Research}
 \label{ch:objectives}
 
 \section{Scope of Research}
@@ -240,7 +266,7 @@ State your research objectives clearly:
 \end{enumerate}
 
 % Chapter 5: Problem Definition
-\chapter{PROBLEM DEFINITION}
+\chapter{Problem Definition}
 \label{ch:problem}
 
 \section{Problem Statement}
@@ -253,7 +279,7 @@ List the assumptions made and constraints considered in your work.
 What outcomes or results do you expect from this research?
 
 % Chapter 6: Methodology
-\chapter{METHODOLOGY FOR SOLUTION OF PROBLEM}
+\chapter{Methodology for Solution of Problem}
 \label{ch:methodology}
 
 \section{Introduction}
@@ -287,7 +313,7 @@ Provide details about computational tools used or experimental apparatus.
 Describe how you validated your methodology.
 
 % Chapter 7: Results and Discussions
-\chapter{RESULTS AND DISCUSSIONS}
+\chapter{Results and Discussions}
 \label{ch:results}
 
 \section{Introduction}
@@ -336,7 +362,7 @@ Compare your results with existing literature or benchmark solutions.
 Summarize the key findings from all results.
 
 % Chapter 8: Conclusions
-\chapter{CONCLUSIONS}
+\chapter{Conclusions}
 \label{ch:conclusions}
 
 \section{Summary of Work}
@@ -405,12 +431,12 @@ Author4, D., Author5, E., and Author6, F., ``Title of conference paper,'' in \te
 
 % Appendices (if any)
 \begin{appendices}
-\chapter{ADDITIONAL DATA}
+\chapter{Additional Data}
 \label{app:data}
 
 Include any additional data, code, or supplementary material here.
 
-\chapter{DERIVATIONS}
+\chapter{Derivations}
 \label{app:derivations}
 
 Include detailed derivations or mathematical proofs here.
