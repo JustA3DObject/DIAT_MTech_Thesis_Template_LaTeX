@@ -56,6 +56,11 @@ h1[data-pdf-se-type-original="chapter"],
     page-break-after: avoid;
 }
 
+/* Preliminary headings offset to rest 25mm from the top edge */
+.prelim-chapter-title {
+    margin-top:     -5mm; /* D.3.1: 25mm from top edge = 30mm margin - 5mm */
+}
+
 /* Chapter number styling */
 h1[data-pdf-se-type="H1"] > span:first-of-type {
     display:        block;
@@ -111,7 +116,7 @@ h4[data-pdf-se-type="H4"] > span:first-of-type {
 p[data-pdf-se-type="P"],
 .paragraph {
     margin-top:     0;
-    margin-bottom:  0; /* D.2.5.1.b: Use indent, not parskip */
+    margin-bottom:  2.5em; /* D.2.5.1.a: Vertical space between paragraphs 2.5 line spacing */
     text-indent:    12mm; /* D.2.5.1.b: First line indent 12mm */
     text-align:     justify;
 }
