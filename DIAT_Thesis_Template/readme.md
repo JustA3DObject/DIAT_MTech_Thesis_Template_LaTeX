@@ -26,17 +26,18 @@ Text Height: 245mm
 
 Page Numbering:
 
-Preliminary Pages (Abstract, TOC, etc.): Lowercase Roman numerals (i, ii, iii) at the center of the footer.
+Preliminary Pages (Abstract, TOC, etc.): Lowercase Roman numerals (i, ii, iii) at the center of the footer. The sequence silently begins counting at the Title Page.
 
 Main Body (Chapter 1 onwards): Arabic numerals (1, 2, 3) at the center of the footer.
 
 Chapter 1 Title Page: The page number "1" is not printed, as per guidelines.
 
-Paragraphs: Indented by 12mm with no vertical space between them.
+Paragraphs: Indented by 12mm with 2.5 line spacing between them.
 
 Headings (Styled as per guidelines):
 
-Chapters: 18pt, Bold, Centered. Starts 75mm from the top edge of the paper with a 25mm gap below.
+Preliminary Pages: 18pt, Bold, Centered. Starts 25mm from the top edge.
+Chapters: 18pt, Bold, Centered, Upper and Lower case. Starts 75mm from the top edge of the paper with a 25mm gap below.
 
 Sections: 16pt, Bold, Flushed Left. 15mm spacing above and below.
 
@@ -128,15 +129,15 @@ Guide II (Co-Supervisor):
 
 Front Matter
 
-Certificate, Declaration, Acknowledgement: These pages are already created as \chapter* environments. Simply edit the text within them.
+Approval Sheet, Certificate of Course Work, Certificate, Declaration, Plagiarism Check Declaration, Acknowledgement: These pages are already created as \chapter* environments. Simply edit the text within them.
 
-Abstract: Edit the text inside the \chapter*{ABSTRACT} environment.
+Abstract: Edit the text inside the \chapter*{Abstract} environment.
 
 TOC, List of Figures, List of Tables: These are generated automatically. You don't need to touch them.
 
 Main Body
 
-Chapters: Write your chapters using \chapter{CHAPTER NAME}.
+Chapters: Write your chapters using \chapter{Chapter Name} (Title Casing required).
 
 Sections: Use \section{Section Name} and \subsection{Subsection Name}.
 
